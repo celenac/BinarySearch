@@ -1,3 +1,19 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class BinarySearch extends PApplet {
+
 
 private Item[] store = {new Item(184,14),
         new Item(196,60),
@@ -58,19 +74,19 @@ public int binarySearch(int catNumToFind,int nLow, int nHigh)
     int average=(nHigh+nLow)/2;
     if(nHigh>=nLow)
     {
-        if(store[average].getCatNum()==catNumToFind)
-        {
-            return store[average].getInventory();
-        }    
-        else if (catNumToFind<store[average].getCatNum())
-        {
-            return binarySearch(catNumToFind, nLow, nHigh-1);
-        }
-        else if (catNumToFind>store[average].getCatNum())
-        {
-            return binarySearch(catNumToFind, nLow+1, nHigh);
-        }
+    if(store[average].getCatNum()==catNumToFind)
+    {
+        return store[average].getInventory();
+    }    
+    else if (catNumToFind<store[average].getCatNum())
+    {
+        return binarySearch(catNumToFind, nLow, nHigh-1);
     }
+    else if (catNumToFind>store[average].getCatNum())
+    {
+        return binarySearch(catNumToFind, nLow+1, nHigh);
+    }
+}
     return -1;           
 }
 public void setup()
@@ -121,3 +137,12 @@ public void draw()
 
 
 
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "BinarySearch" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
